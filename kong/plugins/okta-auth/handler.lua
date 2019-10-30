@@ -1,6 +1,6 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local access = require "kong.plugins.okta-auth.access"
-local responses = require "kong.tools.responses"
+local kong = kong
 local request = ngx.req
 
 local function add_okta_headers(token_data)
@@ -43,7 +43,7 @@ function OktaAuth:access(conf)
   OktaAuth.super.access(self)
 
   authorized, token_data = access.execute(request, conf)
-  if not authorized then return responses.send_HTTP_UNAUTHORIZED() end
+  if not authorized then return kong.response.exit(401, {message="Invalid authentication credentials"}) end
 
   strip_okta_headers()
   request.set_header("Authorization", nil)
