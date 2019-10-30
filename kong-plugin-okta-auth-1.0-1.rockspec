@@ -3,7 +3,7 @@ package = "kong-plugin-okta-auth"
 version = "1.0-1"
 
 source = {
-  url = "git://github.com/techops-staffing/kong-okta-auth-plugin",
+  url = "git://github.com/thecodingrobot/kong-okta-auth-plugin",
 }
 
 description = {
