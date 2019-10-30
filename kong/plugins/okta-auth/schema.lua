@@ -1,4 +1,3 @@
-local errors = require "kong.dao.errors"
 local okta_api = require "kong.plugins.okta-auth.okta_api"
 return {
   no_consumer = false,
@@ -37,11 +36,10 @@ return {
       )
 
       if not response_body then
-        return false, errors.schema(
+        return false, 
           "Could not access authorization server ("..
           conf.authorization_server..
           ") with the specified configuration"
-        )
       end
     end
     return true
